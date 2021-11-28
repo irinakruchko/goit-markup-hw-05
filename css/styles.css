@@ -72,11 +72,11 @@ img {
 }
 .header-list {
   display: flex;
-  align-items: center;
   margin-left: 93px;
 }
 .header-navigation {
   display: flex;
+  align-items: center;
 }
 .header-list .header-item + .header-item {
   margin-left: 50px;
@@ -509,8 +509,9 @@ img {
   display: inline-block;
   color: #afb1b8;
   border: 1px solid #afb1b8;
+  border-radius: 4px;
 
-  transition-property: color;
+  transition-property: color, border;
   transition-duration: var(--duration);
   transition-timing-function: var(--function-animation);
 }
@@ -696,10 +697,13 @@ img {
   margin-bottom: 30px;
   width: 370px;
   box-sizing: border-box;
-
-  transition: transform var(--duration) var(--function-animation),
-    box-shadow var(--duration) var(--function-animation);
 }
+.projects-item:hover,
+.projects-item:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
 .projects-item:nth-last-child(-n + 3) {
   margin-bottom: 0;
 }
@@ -708,11 +712,26 @@ img {
   overflow: hidden;
   background-color: var(--accent-text-color);
 }
+
+.overlay::before {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform var(--duration) var(--function-animation);
+}
+
+.projects-item:hover .overlay::before,
+.projects-item:focus .overlay::before {
+  transform: translateY(0);
+}
 .overlay-text {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
 
   width: 100%;
   height: 100%;
@@ -727,32 +746,7 @@ img {
   transform: translateY(100%);
   transition: transform var(--duration) var(--function-animation);
 }
-.projects-item:hover,
-.projects-item:focus {
-  transition-timing-function: var(--function-animation);
-  transform: translateY(0);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
-.projects-item:hover .overlay::before,
-.projects-item:focus .overlay::before {
-  opacity: 1;
-  transition-timing-function: var(--function-animation);
-  transform: translateY(0);
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-    1px 4px 6px rgba(0, 0, 0, 0.16);
-}
-.overlay::before {
-  position: absolute;
-  display: inline-block;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgba(33, 150, 243, 0.9);
-  opacity: 0;
-  transform: translateY(100%);
-  transition: transform var(--duration) var(--function-animation);
-}
+
 .projects-item:hover .overlay-text,
 .projects-item:focus .overlay-text {
   opacity: 1;
